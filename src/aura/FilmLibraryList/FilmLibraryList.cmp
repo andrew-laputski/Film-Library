@@ -1,0 +1,54 @@
+<aura:component implements="force:appHostable" controller="FilmLibraryController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <aura:attribute name="FilmLibrary" type="Film__c[]"/>
+    <aura:attribute name="FilmLibraryList" type="Film__c[]"/>
+    <aura:attribute name="totalFilms" type="Integer"/>
+    <aura:attribute name="nameForSearch" type="String"/>
+    <aura:attribute name="fieldNames" type="String[]" default='["Film Name","Actor Name"]'/>
+    <aura:attribute name="options" type="String[]"/>
+
+    <div class="slds-m-around_small">
+        <div class="slds-page-header">
+            <div class="slds-media">
+                <div class="slds-media__body">
+                    <div class="slds-box slds-theme_shade">
+                        <p> <h1>FILM LIBRARY</h1> </p>
+                        <p>Total: {!v.totalFilms} Films</p>
+                    </div>
+                    <br/>
+                    <lightning:combobox name="general" label="Actors" placeholder="Select an Actor" options="{! v.options }" onchange="{! c.searchByActor }" value="{!v.nameForSearch}"/>
+                    <lightning:input name="input" label="Search Film by Actor" placeholder="Search an Actor" value="{!v.nameForSearch}" onchange="{!c.searchByActor}" class="slds-m-bottom_medium"/>
+                    <br/>
+                    <p class="slds-text-body_small slds-line-height_reset">
+                    <div class="slds-table--header-fixed_container" style="height:600px;">
+                        <div class="slds-scrollable_y" style="height:100%;">
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered slds-table_striped">
+                                <thead>
+                                    <tr class="slds-text-title_caps">
+                                        <aura:iteration items="{!v.fieldNames}" var="fieldName">
+                                            <th scope="col">
+                                                <div >{!fieldName}</div>
+                                            </th>
+                                        </aura:iteration>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <aura:iteration var="film" items="{!v.FilmLibrary}" >
+                                        <tr>
+                                            <c:FilmLibrary film="{!film}"/>
+                                        </tr>
+                                    </aura:iteration>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </p>
+                </div>
+            </div><br/>
+        </div><br/>
+    </div>
+
+</aura:component>

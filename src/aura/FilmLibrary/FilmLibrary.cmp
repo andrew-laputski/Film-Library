@@ -1,0 +1,18 @@
+<aura:component>
+    <aura:attribute name="film" type="Film__c[]" />
+
+    <th scope="col">
+        <div class="">
+            {!v.film.Name__c}
+        </div>
+    </th>
+
+    <th scope="col">
+        <aura:iteration items="{!v.film.ActorInFilms__r}" var="actor" indexVar="index">
+            <div class="">
+                {!index + 1}. {!actor.Actor__r.Name__c}
+            </div>
+        </aura:iteration>
+    </th>
+
+</aura:component>
