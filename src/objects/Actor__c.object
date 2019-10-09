@@ -67,7 +67,7 @@
     <fields>
         <fullName>Name__c</fullName>
         <caseSensitive>false</caseSensitive>
-        <externalId>false</externalId>
+        <externalId>true</externalId>
         <label>Actor Name</label>
         <length>80</length>
         <required>true</required>
